@@ -143,6 +143,16 @@ def align(
 
         sentence_spans = list(nltk.tokenize.punkt.PunktSentenceTokenizer().span_tokenize(text))
 
+        MAX_SENTENCE_LENGTH = 30
+
+        new_spans = []
+        for left, right in sentence_spans:
+            while right - left > MAX_SENTENCE_LENGTH:
+                new_spans.append((left, left + MAX_SENTENCE_LENGTH))
+                left = left + MAX_SENTENCE_LENGTH
+            new_spans.append((left, right))
+        sentence_spans = new_spans
+
         segment["clean_char"] = clean_char
         segment["clean_cdx"] = clean_cdx
         segment["clean_wdx"] = clean_wdx
