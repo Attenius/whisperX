@@ -148,7 +148,7 @@ def align(
         new_spans = []
         for left, right in sentence_spans:
             while right - left > MAX_SENTENCE_LENGTH:
-                new_spans.append((left, left + MAX_SENTENCE_LENGTH))
+                new_spans.append((left, left + MAX_SENTENCE_LENGTH - 1))
                 left = left + MAX_SENTENCE_LENGTH
             new_spans.append((left, right))
         sentence_spans = new_spans
